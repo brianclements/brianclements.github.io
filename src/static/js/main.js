@@ -233,7 +233,7 @@ function addContentHeading(heading) {
 
 function moveBannerPictureAboveTitle() {
     $("img[src*='banner']").prependTo("#content-posts-section > .post-article")
-        .css("width", "851px").removeClass("img-float-left");
+        .css("max-width", "851px").removeClass("img-float-left");
 }
 
 /***********************************/
