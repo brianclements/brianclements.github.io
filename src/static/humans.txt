@@ -1,0 +1,14 @@
+/* I AM */
+Name: Brian Clements
+Site: http://brianclements.net
+Twitter: @brianclements
+Location: Los Angeles, CA, USA
+
+/* THANKS */
+Name: Greg Hendershott
+Twitter: @GregHendershott
+Role: He wrote Frog! https://github.com/greghendershott/frog
+
+/* SITE */
+Components: Frog, Bootstrap
+Software: Vim, Racket.

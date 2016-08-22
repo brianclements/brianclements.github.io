@@ -1,0 +1,17 @@
+<article class="post-article">
+  <header>
+    <h1>@|title|</h1>
+    <p class='date-and-tags'>
+      <time datetime='@|date-8601|' pubdate='true'>@|date|</time>
+      <br>Tags: <em>@|tags|</em>
+      <hr/>
+    </p>
+  </header>
+  <div id="post-content-div">
+    @|content|
+  </div>
+  <footer id="post-footer">
+    @twitter-share-button[full-uri]
+    @older/newer-links[older-uri older-title newer-uri newer-title]
+  </footer>
+</article>

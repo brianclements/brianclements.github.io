@@ -1,0 +1,315 @@
+#!/bin/bash
+##----------------
+export script_name='blox'
+export script_short_desc="
+My BLog management toolbOX."
+export script_mod_date='2016.08.22-10:23'
+export script_version='0.3.0'
+export script_requirements='
+racket: frog, markdown
+github account, ssh, git' 
+##----------------
+shopt -s extglob ## Needed for arg parsing
+
+## Config
+export working_dir=${working_dir:-"$PWD"}
+export build_folder_name=${build_folder_name:-"build"}
+export build_folder=${build_folder:-"$working_dir/$build_folder_name"}
+export static_assets_folder=${static_assets_folder:-"$working_dir/src/static"}
+
+## Github
+github_user="brianclements"
+deploy_branch="master"
+deploy_repo_name="${github_user}.github.io"
+deploy_repo="git@github.com:${github_user}/${deploy_repo_name}.git"
+# src_branch="src"
+# src_repo_name="${github_user}.github.io"
+# src_repo="git@github.com:${github_user}/${deploy_repo_name}.git"
+
+## Switches
+is_development_mode=false
+
+## Options
+serve_site=false
+frog_serve_root="${build_folder}"
+deploy_site=false
+
+## Script
+reset() {
+    rm -rf "${build_folder}" && echo "...deleted build directory"
+}
+
+clear_frog_cache() {
+    rm -rf "${working_dir}/.frog" && echo "...deleted frog cache"
+}
+
+makeBuildDir() {
+    mkdir -p "${build_folder}" && echo "...created build directory"
+}
+
+build() {
+    cd "${working_dir}"
+    raco frog --build
+    ## TODO: detect drafts/posts and drafts/img folder output from
+    ## `blox.sh new` command and move them into thier respective spots in /src
+}
+
+makePageLinks() {
+    cd "${build_folder}"
+    ln -s ./tags/bio.html ./bio.html &&\
+    ln -s ./tags/statements.html ./statements.html &&\
+    ln -s ./tags/news.html ./index.html &&\
+    ln -s ./tags/urp.html ./urp.html && echo "...created symlinks"
+}
+
+copyAssets() {
+    if $is_development_mode; then ## symlink to source for live edit
+        cd "${working_dir}/src/static"
+        for f in *; do
+            if [[ -d "${f}" ]]; then
+                case "${f}" in
+                    js)
+                        ln -s "${working_dir}/src/static/js" "${build_folder}/js"
+                        ;;
+                    css)
+                        ln -s "${working_dir}/src/static/css" "${build_folder}/css"
+                        ;;
+                    img)
+                        ln -s "${working_dir}/src/static/img" "${build_folder}/img"
+                        ;;
+                    *)
+                        cp -R "${f}" "${build_folder}/"
+                        ;;
+                esac
+            else
+                cp -R "${f}" "${build_folder}/"
+            fi
+        done
+    else
+        cp -R "${static_assets_folder}"/* "${build_folder}/"
+    fi
+    touch "${build_folder}/.nojekyll"
+}
+
+serve() {
+    cd "${working_dir}"
+    raco frog --root "${frog_serve_root}" -s
+}
+
+deploy() {
+    cd "${build_folder}"
+    git init
+    git add .
+    git commit -m "Deploy Commit"
+    git remote add github "${deploy_repo}"
+    git push --force --quiet github master > /dev/null 2>&1 &&\
+        echo "" &&\
+        echo "Sucessfully pushed site to Github."
+}
+
+## Args
+parseSwitches() {
+    local switches="$1"
+    switches="${switches:1}"
+    while (( "${#switches}" )); do
+        # Handle actions for individual switches here
+        case "${switches:0:1}" in
+            d)
+                is_development_mode=true
+                echo "development mode enabled, using symlinks for img, css, js."
+                ;;
+            h)
+                usage
+                exit 0
+                ;;
+            s)
+                serve_site=true
+                ;;
+            v)
+                version
+                exit 0
+                ;;
+            *)
+                echo "Error: "${switches:0:1}" not a valid switch"
+                echo ""
+                usage
+                exit 1
+                ;;
+        esac
+        switches="${switches:1}"
+    done
+}
+
+parseOptions() {
+    IFS='='
+    local option=(${1})
+    unset IFS
+    local option_keyword=${option[0]:2}
+    # Get value of option if there is any
+    local option_value=${option[@]:1}
+    # Handle actions for individual options here
+    case "${option_keyword}" in
+        reset)
+            reset
+            clear_frog_cache
+            exit 0
+            ;;
+        serve-root)
+            frog_serve_root="${option_value}"
+            ;;
+        deploy)
+            if $is_development_mode; then
+                echo "Error: cannot deploy in development mode. Don't want to push symlinks!"
+                echo "Exiting."
+                exit 1
+            else
+                deploy_site=true
+            fi
+            ;;
+        help)
+            usage
+            exit 0
+            ;;
+        version)
+            version
+            exit 0
+            ;;
+        *)
+            echo "Error: "${option_keyword}" not a valid option"
+            echo ""
+            usage
+            exit 1
+            ;;
+    esac
+}
+
+parseSubcommandNew() {
+    echo "not implemented yet."
+    exit 0
+}
+
+parseArgs() {
+    local args=("$@")
+    while (( "${#args}" )); do
+        case "$1" in
+            -@([a-z|A-Z]*))
+                # Switches
+                parseSwitches "$1"
+                ;;
+            --*)
+                # Options
+                parseOptions "$1"
+                ;;
+            new)
+                # Subcommand
+                parseSubcommandNew "${args[@]}"
+                break
+                ;;
+            *)
+                # Anything not a switch or option
+                echo "Error: "$1" not a valid argument"
+                echo ""
+                usage
+                ;;
+        esac
+        shift
+        args=("$@")
+    done
+    shopt -u extglob
+}
+
+## Dialogs
+usage() {
+    cat <<EOF
+Usage: "${script_name}" [<subcommands>] [<switches>] [<options>]
+${script_short_desc}
+
+Builds by default.
+
+Subcommands:
+    new             Creates a new post. File path, filename, and date parity
+                    between posts, hrefs within the post, and the location of
+                    images in the static folder gets tedious when doing
+                    manually.
+
+        -l          Store in local drafts folder '/src/drafts', which is
+                    invisible to git and frog. Otherise, it goes in
+                    '/src/frog/posts'
+
+        --date      Date of post
+
+        --title     Title of post
+
+        --image     Image(s) to include. Call for each image. Will prepend
+                    --title to picture name and create appropriate folder
+                    structure based on --date within the 'img' static assets
+                    folder.
+
+Switches:
+    -d              Development mode. Symlinks CSS, Images, and JS folders
+                    instead of copying them for quicker editing and shorter
+                    build time.
+
+    -i              Ignore posts in local drafts folder when building. Otherwise
+                    any files in '/src/drafts/posts' and '/src/drafts/img' as
+                    created by \`blox new\` command will be folded into their
+                    respective locations in '/src/frog/ and '/src/static/img'.
+
+    -s              Serves site after build using frogs internal server. See 
+                    --serve-root.
+
+
+Options:
+    --deploy        Deploy to Github after build. Assumes a working and
+                    properly configured local git and ssh configuration. This
+                    script is meant to be run from your development
+                    workstation, not drones or other build tools. This decision
+                    was so that I could reuse existing credentials and keys as
+                    when I commit/ssh manually.
+
+    --reset         Cleans build dir and deletes frog internal cache.
+
+    --serve-root    Directory to serve when using -s switch. Uses build
+                    directory by default, not project root.
+
+    -v|--version    Version
+
+    -h|--help       This help
+
+Requirements:
+
+${script_requirements}
+
+Version:
+
+${script_name} version: ${script_version}
+Last modifed on: ${script_mod_date}
+EOF
+}
+
+version() {
+    echo "${script_name} version: ${script_version}"
+    echo "Last modifed on: ${script_mod_date}"
+}
+
+## Sequence 
+main() {
+    set -evo pipefail
+    parseArgs "$@"
+
+    # Default behavior
+    reset
+    makeBuildDir
+    build
+    makePageLinks
+    copyAssets
+    if $serve_site; then
+        serve
+    fi
+    if $deploy_site; then
+        deploy
+    fi
+}
+
+## Runtime
+main "$@"

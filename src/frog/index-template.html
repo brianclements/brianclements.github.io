@@ -1,0 +1,14 @@
+<article class="index-article">
+  <header>
+    <h3 class="index-h3"><a href='@|uri-path|'>@|title|</a></h3>
+    <p class='date-and-tags'>
+      <time datetime='@|date-8601|' pubdate='true'>@|date|</time>
+      <br>Tags: <em>@|tags|</em>
+    </p>
+  </header>
+  @|content-only|
+  @(when more?
+    @list{<footer>
+            <a href='@|uri-path|'>&hellip; more &hellip;</a>
+          </footer>})
+</article>
