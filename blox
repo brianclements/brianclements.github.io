@@ -277,7 +277,6 @@ Options:
     -h|--help       This help
 
 Requirements:
-
 ${script_requirements}
 
 Version:

@@ -8,6 +8,14 @@ This repository is the source for my personal [site and blog].
 
 All management tools can be found in the `blox` (**BL**og toolb**OX**) bash script.
 
+In short, this script builds the site to a `build` folder in project root, which
+then initializes a git repository, commits the contents using existing
+credentials on the machine, and uploads it to github pages using existing ssh
+keys.
+
+The goal was automation of what is normally manual process on my development
+machine, not pure anonymous deployment from build tools/services.
+
 ```
 ./blox -h
 Usage: "blox" [<subcommands>] [<switches>] [<options>]
@@ -68,12 +76,11 @@ Options:
 
 Requirements:
 
-
 racket: frog, markdown
 github account, ssh, git
 
 Version:
 
-blox version: 0.1.0
-Last modifed on: 2016.08.17-10:13
+blox version: 0.3.0
+Last modifed on: 2016.08.22-10:23
 ```
