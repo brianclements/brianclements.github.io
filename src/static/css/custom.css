@@ -391,6 +391,12 @@ header {
     padding: 10px;
     margin: 0;
 }
+#content-intro-section > div > p {
+    text-indent: 0;
+}
+#location + p {
+    text-indent: 0;
+}
 #urp-vimeo-div {
     width: 100%;
     max-width: 500px;
