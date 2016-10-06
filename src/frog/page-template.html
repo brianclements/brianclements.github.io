@@ -144,8 +144,9 @@
               [("bio") @(insert-hybrid-layout "bio")]
               [("urp") @(insert-hybrid-layout "urp")]
               [("news") @list{ @|intro-section-start|
-                               @(get-fragment "headline")
-                               @|hr|
+                               @(when @(not @(equal? @(get-fragment "headline") null))
+                                      @list{ @(get-fragment "headline")
+                                             @|hr|})
                                @|posts-heading|
                                @|section-end|
                                @|posts-section-start|

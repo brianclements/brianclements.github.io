@@ -11,8 +11,11 @@
 ;; Read markdown files and return as html
 (define (read-md-file filename)
   (let ([xs (parse-markdown (file->string filename))])
-    (xexpr->string `(div ()
-                       ,@xs))))
+    ; Return null if file is empty
+    (if (equal? xs '())
+        null
+        (xexpr->string `(div ()
+                          ,@xs)))))
 
 ;; Looks for markdown files in the "fragments" directory, parses them into
 ;; html, and stores them in the fragments hash table with the filename as the
