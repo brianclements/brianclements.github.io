@@ -69,7 +69,7 @@ function columnizeArticles() {
         });
     }
 
-    if ((screen.isLargerThanMobile()) && (pageName == 'blog-index')) {
+    if ((screen.isLargerThanMobile()) && (pageName.includes('blog-index'))) {
         applyColumnize();
     }
     if ((screen.isLargerThanMobile()) && (pageName == 'bio')) {
@@ -122,30 +122,31 @@ function toggleBlogNavItemActive() {
         $("#blog-tags-dropdown-menu > a").removeClass("active");
         $("#blog-nav-item").removeClass("active");
     } else {
-        switch(pageName) {
-            case 'blog-index':
-                if (screen.isLarge()) {
-                    $("#blog-nav-item").addClass("active");
-                    $("#blog-tags-dropdown-menu > a").removeClass("active");
-                }
-                if (screen.isSmallerThanLarge()) {
-                    $("#blog-nav-item").removeClass("active");
-                    $("#blog-tags-dropdown-menu > a").addClass("active");
-                }
-                break;
-            case 'tags':
-                if (screen.isLarge()) {
-                    $("#blog-nav-item").addClass("active");
-                    $("#blog-tags-dropdown-menu > a").removeClass("active");
-                }
-                if (screen.isSmallerThanLarge()) {
-                    $("#blog-nav-item").removeClass("active");
-                    $("#blog-tags-dropdown-menu > a").addClass("active");
-                }
-                break;
-            case 'blog':
+        if (pageName.includes('blog-index')) {
+            if (screen.isLarge()) {
+                $("#blog-nav-item").addClass("active");
+                $("#blog-tags-dropdown-menu > a").removeClass("active");
+            }
+            if (screen.isSmallerThanLarge()) {
+                $("#blog-nav-item").removeClass("active");
                 $("#blog-tags-dropdown-menu > a").addClass("active");
-                break;
+            }
+        } else {
+            switch(pageName) {
+                case 'tags':
+                    if (screen.isLarge()) {
+                        $("#blog-nav-item").addClass("active");
+                        $("#blog-tags-dropdown-menu > a").removeClass("active");
+                    }
+                    if (screen.isSmallerThanLarge()) {
+                        $("#blog-nav-item").removeClass("active");
+                        $("#blog-tags-dropdown-menu > a").addClass("active");
+                    }
+                    break;
+                case 'blog':
+                    $("#blog-tags-dropdown-menu > a").addClass("active");
+                    break;
+            }
         }
     }
 }
@@ -268,50 +269,51 @@ var main = function() {
     showHideBlogTagsDropdown();
     fixCodePreSpaces();
 
-    switch(pageName) {
-        case 'blog-index':
-            columnizeArticles();
-            toggleBlogNavItemActive();
-            addContentHeading("Recent Posts");
-            break;
-        case 'blog':
-            hideBanner();
-            hideTwitter();
-            hideTags();
-            $("#content").removeClass("col-md-7");
-            toggleBlogNavItemActive();
-            moveBannerPictureAboveTitle();
-            break;
-        case 'urp':
-            columnizeArticles();
-            break;
-        case 'bio':
-            toggleAboutNavDropdownActive();
-            // columnizeArticles();
-            break;
-        case 'statements':
-            toggleAboutNavDropdownActive();
-            break;
-        case 'studio':
-            $("#studio").addClass("hidden");
-            toggleLessonNavDropdownActive();
-            break;
-        case 'testimonials':
-            $("#testimonials").addClass("hidden");
-            toggleLessonNavDropdownActive();
-            break;
-        case 'calendar':
-            $("#calendar").addClass("hidden");
-            toggleCalendarNavItemActive();
-            break;
-        case 'tags':
-            toggleBlogNavItemActive();
-            toggleProjectsNavItemActive();
-            break;
-        case 'contact':
-            $("#contact").addClass("hidden");
-            toggleContactNavItemActive();
-            break;
+    if (pageName.includes('blog-index')) {
+        columnizeArticles();
+        toggleBlogNavItemActive();
+        addContentHeading("Recent Posts");
+    } else {
+        switch(pageName) {
+            case 'blog':
+                hideBanner();
+                hideTwitter();
+                hideTags();
+                $("#content").removeClass("col-md-7");
+                toggleBlogNavItemActive();
+                moveBannerPictureAboveTitle();
+                break;
+            case 'urp':
+                columnizeArticles();
+                break;
+            case 'bio':
+                toggleAboutNavDropdownActive();
+                // columnizeArticles();
+                break;
+            case 'statements':
+                toggleAboutNavDropdownActive();
+                break;
+            case 'studio':
+                $("#studio").addClass("hidden");
+                toggleLessonNavDropdownActive();
+                break;
+            case 'testimonials':
+                $("#testimonials").addClass("hidden");
+                toggleLessonNavDropdownActive();
+                break;
+            case 'calendar':
+                $("#calendar").addClass("hidden");
+                toggleCalendarNavItemActive();
+                break;
+            case 'tags':
+                toggleBlogNavItemActive();
+                toggleProjectsNavItemActive();
+                break;
+            case 'contact':
+                $("#contact").addClass("hidden");
+                toggleContactNavItemActive();
+                break;
+        }
     }
 }
 
