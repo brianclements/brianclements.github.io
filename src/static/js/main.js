@@ -241,6 +241,10 @@ function moveBannerPictureAboveTitle() {
     }
 }
 
+function centerPaginationControls() {
+    $("#content-posts-section>footer").appendTo("#content")
+}
+
 /***********************************/
 /* Events */
 /***********************************/
@@ -273,6 +277,7 @@ var main = function() {
         columnizeArticles();
         toggleBlogNavItemActive();
         addContentHeading("Recent Posts");
+        centerPaginationControls();
     } else {
         switch(pageName) {
             case 'blog':
