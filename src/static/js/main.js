@@ -232,8 +232,12 @@ function addContentHeading(heading) {
 }
 
 function moveBannerPictureAboveTitle() {
-    $("img[src*='banner']").prependTo("#content-posts-section > .post-article")
-        .css("max-width", "851px").removeClass("img-float-left");
+    e = $("img[src*='banner']").removeClass("img-float-left")
+    if (e.hasClass("img-urp-banner")) {
+        e.prependTo("#content-posts-section > .post-article")
+    } else {
+        e.prependTo("#content-posts-section")
+    }
 }
 
 /***********************************/

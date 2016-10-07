@@ -281,6 +281,9 @@ img {
 .img-float-right {
     float: right;
 }
+.img-urp-banner {
+    max-width: 851px;
+}
 .img-zoom-05 {
     width: 5%;
 }
