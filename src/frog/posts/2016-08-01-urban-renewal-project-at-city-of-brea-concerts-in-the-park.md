@@ -6,7 +6,7 @@
 src="/img/blog/2016/08/01/urban-renewal-project-at-city-of-brea-concerts-in-the-park/urban-renewal-project-at-city-of-brea-concerts-in-the-park-banner.jpg"
      alt="Urban Renewal Project at City of Brea concerts in the park banner" 
      href="/blog/2016/08/01/urban-renewal-project-at-city-of-brea-concerts-in-the-park"
-     class="img-float-left">
+     class="img-float-left img-urp-banner">
 
 <!-- more -->
 

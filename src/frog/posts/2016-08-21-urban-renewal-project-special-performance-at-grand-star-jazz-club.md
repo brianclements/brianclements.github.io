@@ -5,7 +5,7 @@
 <img src="/img/blog/2016/08/21/urban-renewal-project-special-performance-at-grand-star-jazz-club/urban-renewal-project-special-performance-at-grand-star-jazz-club-banner.jpg"
      alt="Urban Renewal Project Special Performance at Grand Star Jazz Club"
      href="/blog/2016/08/21/urban-renewal-project-special-performance-at-grand-star-jazz-club"
-     class="img-float-left">
+     class="img-float-left img-urp-banner">
 
 <!-- more -->
 

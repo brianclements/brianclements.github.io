@@ -5,7 +5,7 @@
 <img src="/img/blog/2016/05/22/urban-renewal-project-at-mrs-fish-downtown-la/urban-renewal-project-at-mrs-fish-downtown-la-banner.jpg"
      alt="Urban Renewal Project at Mrs. Fish, Downtown LA banner" 
      href="/blog/2016/05/22/urban-renewal-project-at-mrs-fish-downtown-la"
-     class="img-float-left">
+     class="img-float-left img-urp-banner">
 
 <!-- more -->
 
