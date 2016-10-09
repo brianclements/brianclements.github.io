@@ -25,14 +25,17 @@ hr {
     margin: 5px 0 5px;
 }
 h1, .h1 {
+    margin-top: 20px;
     font-size: 34px;
     font-size: 3.4rem;
 }
 h2, .h2 {
+    margin-top: 1.2em;
     font-size: 28px;
     font-size: 2.8rem;
 }
 h3, .h3 {
+    margin-top: 1.2em;
     font-size: 22px;
     font-size: 2.2rem;
 }
@@ -104,7 +107,7 @@ article > footer > a {
 #post-content-div {
     line-height: 165%;
 }
-#post-content-div > p{
+#post-content-div > p {
     font-size: 16px;
     font-size: 1.6rem;
 }
@@ -483,6 +486,12 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
     }
     form {
         width: 60%;
+    }
+    h2, .h2 {
+        margin-top: 1.65em;
+    }
+    h3, .h3 {
+        margin-top: 1.65em;
     }
     #content img {
         padding: 10px;
