@@ -256,6 +256,14 @@ function centerTextForUrpPost() {
         $("article.post-article").css("text-align", "center");
     }
 }
+
+function applyBootstrapToOrderedLists() {
+    $("#post-content-div > ol, #post-content-div > ul").each(function() {
+        $(this).addClass("list-group");
+        $(this).children().addClass("list-group-item");
+    });
+}
+
 /***********************************/
 /* Events */
 /***********************************/
@@ -300,6 +308,7 @@ var main = function() {
                 moveBannerPictureAboveTitle();
                 centerImagesInParagraphs();
                 centerTextForUrpPost();
+                applyBootstrapToOrderedLists();
                 break;
             case 'urp':
                 columnizeArticles();
