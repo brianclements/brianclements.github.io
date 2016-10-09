@@ -242,9 +242,20 @@ function moveBannerPictureAboveTitle() {
 }
 
 function centerPaginationControls() {
-    $("#content-posts-section>footer").appendTo("#content")
+    $("#content-posts-section > footer").appendTo("#content")
 }
 
+function centerImagesInParagraphs() {
+    $("img").each(function() {
+        $(this).parent("p").css("text-align", "center");
+    });
+}
+
+function centerTextForUrpPost() {
+    if ($("img[src*='urban-renewal-project']").length) {
+        $("article.post-article").css("text-align", "center");
+    }
+}
 /***********************************/
 /* Events */
 /***********************************/
@@ -287,6 +298,8 @@ var main = function() {
                 $("#content").removeClass("col-md-7");
                 toggleBlogNavItemActive();
                 moveBannerPictureAboveTitle();
+                centerImagesInParagraphs();
+                centerTextForUrpPost();
                 break;
             case 'urp':
                 columnizeArticles();

@@ -100,9 +100,12 @@ article > footer > a {
 /* post article */
 /* ==================== */
 .post-article {
-    text-align: center;
+    text-align: justify;
     width: 100%;
     max-width: 100%;
+}
+.post-article > header {
+    text-align: center;
 }
 #post-content-div {
     line-height: 165%;
