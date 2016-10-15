@@ -4,7 +4,7 @@
 
 <img src="/img/blog/2016/10/14/urban-renewal-project-releases-second-single-hide/urban-renewal-project-hide-banner.jpg"
      alt="Urban Renewal Project Hide banner" 
-     class="img-float-left img-urp-banner">
+     class="img-urp-banner">
 
 <!-- more -->
 

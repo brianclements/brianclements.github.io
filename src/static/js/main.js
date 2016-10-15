@@ -178,7 +178,6 @@ function toggleCalendarNavItemActive() {
     }
 }
 
-
 function toggleContactNavItemActive() {
     if (screen.isLargerThanMobile()) {
         $("#contact-nav-item").addClass("active");
@@ -233,7 +232,7 @@ function addContentHeading(heading) {
 }
 
 function moveBannerPictureAboveTitle() {
-    e = $("img[src*='banner']").removeClass("img-float-left")
+    e = $("img[src*='banner']")
     if (e.hasClass("img-urp-banner")) {
         e.prependTo("#content-posts-section > .post-article")
     } else {
@@ -261,6 +260,12 @@ function applyBootstrapToOrderedLists() {
     $("#post-content-div > ol, #post-content-div > ul").each(function() {
         $(this).addClass("list-group");
         $(this).children().addClass("list-group-item");
+    });
+}
+
+function unwrapBannerImages() {
+    $("img[src*='banner']").removeClass("img-urp-banner").each(function() {
+        $(this).parent().before(this).remove();
     });
 }
 
@@ -297,8 +302,15 @@ var main = function() {
         toggleBlogNavItemActive();
         addContentHeading("Recent Posts");
         centerPaginationControls();
+        unwrapBannerImages();
     } else {
         switch(pageName) {
+            case '': // TLD
+                unwrapBannerImages();
+                break;
+            case 'index': // when user hits "home"
+                unwrapBannerImages();
+                break;
             case 'blog':
                 hideBanner();
                 hideTwitter();
@@ -335,6 +347,7 @@ var main = function() {
             case 'tags':
                 toggleBlogNavItemActive();
                 toggleProjectsNavItemActive();
+                unwrapBannerImages();
                 break;
             case 'contact':
                 $("#contact").addClass("hidden");

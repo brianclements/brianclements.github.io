@@ -5,7 +5,7 @@
 <img src="/img/blog/2016/06/01/urban-renewal-project-at-street-food-cinema-ferris-buellers-day-off/urban-renewal-project-at-street-food-cinema-ferris-buellers-day-off-banner.jpg"
      alt="Urban Renewal Project at Street Food Cinema: Ferris Bueller's Day Off" 
      href="/blog/2016/06/01/urban-renewal-project-at-street-food-cinema-ferris-buellers-day-off"
-     class="img-float-left img-urp-banner">
+     class="img-urp-banner">
 
 <!-- more -->
 

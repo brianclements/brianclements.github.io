@@ -5,8 +5,7 @@
 
 <img src="/img/blog/2016/09/10/urban-renewal-project-at-carpenter-center/carpenter-performing-arts-center-banner.jpg"
      alt="Urban Renewal Project at Carpenter Center banner" 
-     href="/blog/2016/09/10/urban-renewal-project-at-carpenter-center"
-     class="img-float-left">
+     href="/blog/2016/09/10/urban-renewal-project-at-carpenter-center">
 
 <!-- more -->
 

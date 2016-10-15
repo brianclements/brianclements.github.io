@@ -3,8 +3,7 @@
     Tags: music, music education, saxophone
 
 <img src="/img/blog/2016/10/08/so-you-want-to-buy-a-saxophone/old-saxophone-patent-blueprints-banner.jpg"
-     alt="Old Saxophone Patent Blueprints" 
-     class="img-float-left">
+     alt="Old Saxophone Patent Blueprints">
 
 <!-- more -->
 
