@@ -4,7 +4,6 @@
 
 <img src="/img/blog/2016/08/10/urban-renewal-project-at-san-jose-summerfest/urban-renewal-project-at-san-jose-summerfest-banner.jpg"
      alt="Urban Renewal Project San Jose Summerfest banner" 
-     href="/blog/2016/08/10/urban-renewal-project-at-san-jose-summerfest"
      class="img-urp-banner">
 
 <!-- more -->

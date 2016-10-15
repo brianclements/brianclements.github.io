@@ -4,7 +4,6 @@
 
 <img src="/img/blog/2016/09/07/urban-renewal-project-releases-new-single-don-t-ask-y/urban-renewal-project-releases-new-single-don-t-ask-y-banner.jpg"
      alt="Urban Renewal Project Releases New Single banner" 
-     href="/blog/2016/09/07/urban-renewal-project-releases-new-single-don-t-ask-y"
      class="img-urp-banner">
 
 <!-- more -->

@@ -4,7 +4,6 @@
 
 <img src="/img/blog/2016/08/12/urban-renewal-project-at-jazz-and-beyond-festival/urban-renewal-project-at-jazz-and-beyond-festival-banner.jpg"
      alt="Urban Renewal Project at Jazz and Beyond Carson City Music Festival banner" 
-     href="/blog/2016/08/12/urban-renewal-project-at-jazz-and-beyond-festival"
      class="img-urp-banner">
 
 <!-- more -->
