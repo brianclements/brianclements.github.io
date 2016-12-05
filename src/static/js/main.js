@@ -264,7 +264,7 @@ function applyBootstrapToOrderedLists() {
 }
 
 function unwrapBannerImages() {
-    $("img[src*='banner']").removeClass("img-urp-banner").each(function() {
+    $("img[src*='banner'][src*='img/blog']").removeClass("img-urp-banner").each(function() {
         $(this).parent().before(this).remove();
     });
 }
