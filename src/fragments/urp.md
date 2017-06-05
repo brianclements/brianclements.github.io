@@ -1,7 +1,7 @@
 <a href="http://www.urpmusic.com">
-    <img src="/img/urp/urban-renewal-project-logo-light.jpg"
+    <img src="/img/urp/urban-renewal-project-logo-light.png"
         alt="Urban Renewal Project logo light"
-        class="img-float-left img-zoom-60">
+        class="img-float-left img-zoom-30">
 </a>
 [The Urban Renewal Project] has been kicking around the Pacific Coast for six
 years, using the instruments of a bygone era to create a signature sound that
