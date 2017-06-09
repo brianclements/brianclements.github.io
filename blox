@@ -3,8 +3,8 @@
 export script_name='blox'
 export script_short_desc="
 My BLog management toolbOX."
-export script_mod_date='2016.08.22-10:23'
-export script_version='0.3.0'
+export script_mod_date='2017.06.09-11:24'
+export script_version='0.4.0'
 export script_requirements='
 racket: frog, markdown
 github account, ssh, git' 
@@ -68,14 +68,17 @@ copyAssets() {
         for f in *; do
             if [[ -d "${f}" ]]; then
                 case "${f}" in
-                    js)
-                        ln -s "${working_dir}/src/static/js" "${build_folder}/js"
-                        ;;
                     css)
                         ln -s "${working_dir}/src/static/css" "${build_folder}/css"
                         ;;
+                    fonts)
+                        ln -s "${working_dir}/src/static/fonts" "${build_folder}/fonts"
+                        ;;
                     img)
                         ln -s "${working_dir}/src/static/img" "${build_folder}/img"
+                        ;;
+                    js)
+                        ln -s "${working_dir}/src/static/js" "${build_folder}/js"
                         ;;
                     *)
                         cp -R "${f}" "${build_folder}/"

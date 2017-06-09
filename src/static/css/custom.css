@@ -509,6 +509,48 @@ textarea:focus::-moz-placeholder,
 input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
 textarea:focus:-ms-input-placeholder,
 input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+/* ==================== */
+/* Social Media button Fixes */
+/* ==================== */
+.btn-facebook {
+    border-color: rgba(0, 0, 0, 0);
+}
+.btn-twitter {
+    border-color: rgba(0, 0, 0, 0);
+}
+.btn-google {
+    border-color: rgba(0, 0, 0, 0);
+}
+.btn-snapchat {
+    background-color: #fffc00;
+    color: #fff;
+    text-shadow: 0.5px 0px #000000,
+                 -0.5px 0px #000000,
+                 0px 0.5px #000000,
+                 0px -0.5px #000000,
+                -0.5px -0.5px #000000,
+                 0.5px -0.5px #000000,
+                 -0.5px 0.5px #000000,
+                 0.5px 0.5px #000000;
+}
+.btn-snapchat:hover {
+    background-color: #DBD800;
+    color: #fff;
+}
+.snapchat-ghost:hover {
+    color: #000;
+}
+.btn-instagram {
+    background-color: #282828;
+    border-color: rgba(0, 0, 0, 0);
+}
+.btn-instagram:hover {
+    background-color: #121212;
+}
+.btn:hover {
+    margin-top: 0px;
+    border-color: rgba(0, 0, 0, 0);
+}
 /* ========================================================================== */
 /* Media Queries */
 /* ========================================================================== */
